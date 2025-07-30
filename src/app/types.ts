@@ -3,4 +3,5 @@ export type Task = {
     deadline?: string;
     taskName: string;
     createdAt: string;
+    completed: boolean;
 };

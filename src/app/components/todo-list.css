@@ -71,7 +71,7 @@
     min-width: 80px;
   }
 
-  .todoTask__check {
+  /* .todoTask__check {
     background: url(/img/circle.svg) no-repeat;
     background-size: contain;
     display: inline-block;
@@ -82,7 +82,7 @@
       background: url(/img/checked.svg) no-repeat;
       background-size: contain;
     }
-  }
+  } */
 
   .todoTask__label {
     border: none;
