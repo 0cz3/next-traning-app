@@ -15,7 +15,8 @@ export const POST = async (req: Request) => {
   try {
     const { taskName, deadline } = await req.json();
     // TODO バリデーション追加
-    const tasks = await prisma.task.create({ data: { taskName: taskName, deadline: new Date(deadline) } });
+    const dataCreate = { taskName: taskName, ...(deadline && { deadline: new Date(deadline) }) };
+    const tasks = await prisma.task.create({ data: dataCreate });
     return NextResponse.json({ message: "success", tasks }, { status: 201 });
   } catch (err) {
     return NextResponse.json({ message: "Error", err }, { status: 500 });

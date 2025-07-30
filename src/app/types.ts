@@ -1,6 +1,6 @@
 export type Task = {
     id: string;
-    deadline: string;
+    deadline?: string;
     taskName: string;
     createdAt: string;
 };
