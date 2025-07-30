@@ -1,20 +1,48 @@
-
-import { postAction } from "../actions/postAction";
+"use client";
+import { useRouter } from "next/navigation";
 import "./input.css";
-import React from "react";
+import React, { useState } from "react";
 
-export async function Input() {
+export function Input() {
   // テキストがあれば送信許可、なければ許可しない
+  const router = useRouter();
+  const [taskName, setTaskName] = useState<string>("");
+  const [deadline, setDeadline] = useState<string>("");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+    await fetch(`${API_URL}/api/todo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ taskName, deadline }), // req.bodyに入る
+    });
+    setTaskName("");
+    setDeadline("");
+    router.refresh();
+  };
 
   return (
-    <form className="addTodo js_addTodo_form" action={postAction}>
-      <input name="task" type="text" className="addTodo__input js_addTodo_input" placeholder="タスクを入力して追加" />
+    <form className="addTodo js_addTodo_form" onSubmit={handleSubmit}>
+      <input
+        name="task"
+        type="text"
+        onChange={(e) => {
+          setTaskName(e.target.value);
+        }}
+        className="addTodo__input js_addTodo_input"
+        placeholder="タスクを入力して追加"
+      />
       <label htmlFor="inputDate" className="addTodo__dateText">
         期限日
       </label>
       <input
         name="deadline"
         type="date"
+        onChange={(e) => {
+          setDeadline(e.target.value);
+        }}
         id="inputDate"
         className="addTodo__inputDate js_addTodo_inputDate"
         placeholder="タスクを入力して追加"
