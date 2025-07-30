@@ -29,7 +29,8 @@ datasource db {
 
 model Task {
   id        Int      @id @default(autoincrement())
-  deadline  DateTime
+  deadline  DateTime?
   createdAt DateTime @default(now())
   taskName  String
+  completed Boolean @default(false)
 }
