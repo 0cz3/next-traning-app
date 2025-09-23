@@ -109,7 +109,7 @@
   }
 
   .todoTask__delete {
-    background: url(/img/trash.svg) no-repeat;
+    background: url(/trash.svg) no-repeat;
     background-size: contain;
     display: inline-block;
     height: 28px;
