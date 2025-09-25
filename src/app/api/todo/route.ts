@@ -33,3 +33,13 @@ export const DELETE = async (req: Request) => {
     return NextResponse.json({ message: "Error", err }, { status: 500 });
   }
 };
+
+export const PUT = async (req: Request) => {
+  try {
+    const { id, taskName, deadline, completed } = await req.json();
+    const task = await prisma.task.update({ data: {deadline, taskName, completed}, where: { id: id }  });
+    return NextResponse.json({ message: "success", task }, { status: 200 });
+  } catch (err) {
+    return NextResponse.json({ message: "Error", err }, { status: 500 });
+  }
+};
