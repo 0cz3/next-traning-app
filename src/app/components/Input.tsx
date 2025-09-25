@@ -27,6 +27,7 @@ export function Input() {
     <form className="addTodo js_addTodo_form" onSubmit={handleSubmit}>
       <input
         name="task"
+        value={taskName}
         type="text"
         onChange={(e) => {
           setTaskName(e.target.value);
@@ -39,6 +40,7 @@ export function Input() {
       </label>
       <input
         name="deadline"
+        value={deadline}
         type="date"
         onChange={(e) => {
           setDeadline(e.target.value);
