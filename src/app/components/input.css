@@ -1,0 +1,38 @@
+@import "tailwindcss";
+.addTodo {
+  text-align: end;
+
+  .addTodo__input {
+    display: block;
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 8px;
+    .addTodo:focus-visible {
+      outline: 1px solid;
+    }
+  }
+
+  .addTodo__dateText {
+    font-size: 0.9em;
+  }
+
+  .addTodo__inputDate {
+    font-size: 0.9em;
+    padding: 2px;
+    cursor: pointer;
+  }
+
+  .addTodo__submit {
+    margin-left: 6px;
+    background-color: #dddddd;
+    opacity: 0.5;
+    padding: 4px 12px;
+    border: solid 1px;
+    border-radius: 2px;
+    .addTodo.is-active {
+      opacity: 1;
+      background-color: #b0ffaf;
+      cursor: pointer;
+    }
+  }
+}
