@@ -17,14 +17,14 @@
   }
 
   .todoTask__toggle {
-    background: url(/img/up.svg) no-repeat;
+    background: url(/up.svg) no-repeat;
     background-size: contain;
     display: inline-block;
     height: 36px;
     width: 36px;
     cursor: pointer;
     &.is-closed {
-      background: url(/img/down.svg) no-repeat;
+      background: url(/down.svg) no-repeat;
       background-size: contain;
     }
   }

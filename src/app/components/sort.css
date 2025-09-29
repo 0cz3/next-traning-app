@@ -25,7 +25,7 @@
     width: 36px;
     cursor: pointer;
     &.is-closed {
-      background: url(/img/down.svg) no-repeat;
+      background: url(/down.svg) no-repeat;
       background-size: contain;
     }
   }
@@ -110,7 +110,7 @@
   }
 
   .todoTask__delete {
-    background: url(/img/trash.svg) no-repeat;
+    background: url(/trash.svg) no-repeat;
     background-size: contain;
     display: inline-block;
     height: 28px;
