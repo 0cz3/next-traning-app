@@ -23,7 +23,7 @@
     height: 36px;
     width: 36px;
     cursor: pointer;
-    .todoTask.is-closed {
+    &.is-closed {
       background: url(/img/down.svg) no-repeat;
       background-size: contain;
     }
@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    .todoTask.is-closed {
+    &.is-closed {
       display: none;
     }
   }
@@ -41,7 +41,7 @@
   .todoTask__count {
     font-size: 0.9em;
     position: relative;
-    .todoTask::before {
+    &::before {
       z-index: -1;
       position: absolute;
       top: 50%;
@@ -88,10 +88,10 @@
     border: none;
     padding: 6px;
     flex-grow: 1;
-    .todoTask:focus-visible {
+    &:focus-visible {
       outline: 0.5px solid;
     }
-    .todoTask:hover {
+    &:hover {
       outline: rgb(221, 221, 221) 0.5px solid;
     }
   }
@@ -100,10 +100,10 @@
     border: none;
     padding: 6px;
     cursor: pointer;
-    .todoTask:focus-visible {
+    &:focus-visible {
       outline: 0.5px solid;
     }
-    .todoTask:hover {
+    &:hover {
       outline: rgb(221, 221, 221) 0.5px solid;
     }
   }
