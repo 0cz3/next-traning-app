@@ -5,22 +5,23 @@ import "./globals.css";
 export default async function Home() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL!;
   // cache: "no-store" = SSR 動的データ取得 更新頻度高
-  const res = await fetch(`${API_URL}/api/todo`, { cache: "no-store" }).catch((err)=>{
-    console.log(err)
-    console.log(API_URL)
-  })
-  let tasks
-  if(!res){
-    tasks = ""
-  } else {
-    tasks = await res.json();
+  let tasks = { tasks: [] };
+  try {
+    const res = await fetch(`${API_URL}/api/todo`, { cache: "no-store" });
+    if (res.ok) {
+      tasks = await res.json();
+    } else {
+      console.error("tasksを取得できません", res.status);
+    }
+  } catch (err) {
+    console.error(err);
+    console.log("API URL", API_URL);
   }
-  console.log(`tasks${tasks}`)
   return (
     <div className="todo">
       <Input />
       <div className="todoTask">
-        <TodoContainer initialTasks={tasks.tasks}/>
+        <TodoContainer initialTasks={tasks.tasks} />
       </div>
     </div>
   );
