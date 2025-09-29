@@ -8,8 +8,10 @@ export function Input() {
   const router = useRouter();
   const [taskName, setTaskName] = useState<string>("");
   const [deadline, setDeadline] = useState<string>("");
+  const isSubmitDisabled = taskName === "";
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitDisabled) return;
     const API_URL = process.env.NEXT_PUBLIC_API_URL!;
     await fetch(`${API_URL}/api/todo`, {
       method: "POST",
@@ -49,7 +51,7 @@ export function Input() {
         className="addTodo__inputDate js_addTodo_inputDate"
         placeholder="タスクを入力して追加"
       />
-      <input type="submit" className="addTodo__submit js_addTodo_submit" value="追加" />
+      <input type="submit" className={`addTodo__submit js_addTodo_submit ${!isSubmitDisabled ? "is-active" : ""}`} value="追加"/>
     </form>
   );
 }

@@ -7,7 +7,7 @@
     width: 100%;
     padding: 6px;
     margin-bottom: 8px;
-    .addTodo:focus-visible {
+    &:focus-visible {
       outline: 1px solid;
     }
   }
@@ -29,7 +29,7 @@
     padding: 4px 12px;
     border: solid 1px;
     border-radius: 2px;
-    .addTodo.is-active {
+    &.is-active {
       opacity: 1;
       background-color: #b0ffaf;
       cursor: pointer;
