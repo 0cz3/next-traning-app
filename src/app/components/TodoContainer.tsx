@@ -55,7 +55,7 @@ export function TodoContainer({ initialTasks }: Tasks) {
 
   return (
     <div className="todoTask">
-      <Sort filter={filter} onFilterChange={setFilter} sort={sort} onSortChange={setSort}/>
+      <Sort filter={filter} onFilterChange={setFilter} sort={sort} onSortChange={setSort} taskCount={filteredTasks.length}/>
       <TodoList tasks={sortedTasks} />
     </div>
   );

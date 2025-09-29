@@ -6,14 +6,15 @@ type SortProps = {
   onFilterChange: (value: string) => void;
   sort: string;
   onSortChange: (value: string) => void;
+  taskCount: number;
 };
 
-function Sort({filter, onFilterChange, sort, onSortChange}: SortProps) {
+function Sort({filter, onFilterChange, sort, onSortChange, taskCount}: SortProps) {
   return (
     <div className="todoTask__header">
       <button className="todoTask__toggle js_todoTask_toggle"></button>
       <p className="todoTask__title">Todoリスト</p>
-      <span className="todoTask__count js_todoTask_count">0</span>
+      <span className="todoTask__count js_todoTask_count">{taskCount}</span>
       <div className="todoTask__selectWrapper">
         <span className="todoTask__selectText">絞り込み</span>
         <select className="todoTask__select js_todoTask_filter" value={filter} onChange={(e) => onFilterChange(e.target.value)} name="" id="">
