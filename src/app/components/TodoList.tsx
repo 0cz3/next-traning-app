@@ -53,7 +53,7 @@ function TodoList({ tasks: initialTasks }: Tasks) {
     } else if (name === "taskName") {
       updateData = { taskName: value };
     } else if (name === "deadline") {
-      updateData = { deadline: value };
+      updateData = { deadline:(value ? new Date(value) : null) };
     }
     handleChange(id, updateData);
   };
