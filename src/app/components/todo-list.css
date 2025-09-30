@@ -1,32 +1,8 @@
 .todoTask {
-  display: flex;
-  flex-direction: column;
-  margin-top: 12px;
-  gap: 12px;
-
-  .todoTask__header {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-
   .todoTask__item {
     display: flex;
     gap: 12px;
     align-items: center;
-  }
-
-  .todoTask__toggle {
-    background: url(/up.svg) no-repeat;
-    background-size: contain;
-    display: inline-block;
-    height: 36px;
-    width: 36px;
-    cursor: pointer;
-    &.is-closed {
-      background: url(/down.svg) no-repeat;
-      background-size: contain;
-    }
   }
 
   .todoTask__list {
@@ -38,51 +14,12 @@
     }
   }
 
-  .todoTask__count {
-    font-size: 0.9em;
-    position: relative;
-    &::before {
-      z-index: -1;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      content: "";
-      display: inline-block;
-      background-color: rgb(221, 221, 221);
-      height: 24px;
-      width: 24px;
-      border-radius: 50%;
-    }
-  }
-
-  .todoTask__selectWrapper {
-    margin-left: auto;
-  }
-
-  .todoTask__selectText {
-    font-size: 0.9em;
-    margin-left: 12px;
-  }
-
-  .todoTask__select {
-    font-size: 0.9em;
-    padding: 2px;
-    min-width: 80px;
-  }
-
-  /* .todoTask__check {
-    background: url(/img/circle.svg) no-repeat;
-    background-size: contain;
+  .todoTask__check {
     display: inline-block;
     height: 28px;
     width: 28px;
     cursor: pointer;
-    .todoTask.checked {
-      background: url(/img/checked.svg) no-repeat;
-      background-size: contain;
-    }
-  } */
+  }
 
   .todoTask__label {
     border: none;

@@ -1,17 +1,6 @@
 @import "tailwindcss";
 .todoTask {
-  display: flex;
-  flex-direction: column;
-  margin-top: 12px;
-  gap: 12px;
-
   .todoTask__header {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .todoTask__item {
     display: flex;
     gap: 12px;
     align-items: center;
@@ -30,18 +19,10 @@
     }
   }
 
-  .todoTask__list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    &.is-closed {
-      display: none;
-    }
-  }
-
   .todoTask__count {
     font-size: 0.9em;
     position: relative;
+    font-weight: bold;
     &::before {
       z-index: -1;
       position: absolute;
@@ -64,57 +45,15 @@
   .todoTask__selectText {
     font-size: 0.9em;
     margin-left: 12px;
+    font-weight: bold;
   }
 
   .todoTask__select {
+    margin-left: 2px;
     font-size: 0.9em;
     padding: 2px;
     min-width: 80px;
-  }
-
-  .todoTask__check {
-    background: url(/circle.svg) no-repeat;
-    background-size: contain;
-    display: inline-block;
-    height: 28px;
-    width: 28px;
-    cursor: pointer;
-    &.checked {
-      background: url(/checked.svg) no-repeat;
-      background-size: contain;
-    }
-  }
-
-  .todoTask__label {
-    border: none;
-    padding: 6px;
-    flex-grow: 1;
-    &:focus-visible {
-      outline: 0.5px solid;
-    }
-    &:hover {
-      outline: rgb(221, 221, 221) 0.5px solid;
-    }
-  }
-
-  .todoTask__dateLabel {
-    border: none;
-    padding: 6px;
-    cursor: pointer;
-    &:focus-visible {
-      outline: 0.5px solid;
-    }
-    &:hover {
-      outline: rgb(221, 221, 221) 0.5px solid;
-    }
-  }
-
-  .todoTask__delete {
-    background: url(/trash.svg) no-repeat;
-    background-size: contain;
-    display: inline-block;
-    height: 28px;
-    width: 28px;
-    cursor: pointer;
+    background: rgb(221, 221, 221);
+    border-radius: 4px;
   }
 }

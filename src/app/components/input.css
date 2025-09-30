@@ -14,12 +14,16 @@
 
   .addTodo__dateText {
     font-size: 0.9em;
+    font-weight: bold;
   }
 
   .addTodo__inputDate {
+    margin-left: 2px;
     font-size: 0.9em;
     padding: 2px;
     cursor: pointer;
+    background: rgb(221, 221, 221);
+    border-radius: 4px;
   }
 
   .addTodo__submit {
