@@ -7,9 +7,10 @@ import "./todo-list.css";
 
 type Tasks = {
   tasks: Task[];
+  toggleActive: boolean
 };
 
-function TodoList({ tasks: initialTasks }: Tasks) {
+function TodoList({ tasks: initialTasks, toggleActive }: Tasks) {
   const router = useRouter();
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
 
@@ -53,13 +54,13 @@ function TodoList({ tasks: initialTasks }: Tasks) {
     } else if (name === "taskName") {
       updateData = { taskName: value };
     } else if (name === "deadline") {
-      updateData = { deadline:(value ? new Date(value) : null) };
+      updateData = { deadline: value ? new Date(value) : null };
     }
     handleChange(id, updateData);
   };
 
   return (
-    <ul className="todoTask__list js_todoTask_list">
+    <ul className={`todoTask__list js_todoTask_list ${!toggleActive ? "is-closed" : ""}`}>
       {tasks.map((task) => {
         const deadlineDate = task.deadline ? new Date(task.deadline).toISOString().split("T")[0] : "";
         return (

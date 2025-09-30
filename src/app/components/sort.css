@@ -18,7 +18,7 @@
   }
 
   .todoTask__toggle {
-    background: url(/img/up.svg) no-repeat;
+    background: url(/up.svg) no-repeat;
     background-size: contain;
     display: inline-block;
     height: 36px;
@@ -73,14 +73,14 @@
   }
 
   .todoTask__check {
-    background: url(/img/circle.svg) no-repeat;
+    background: url(/circle.svg) no-repeat;
     background-size: contain;
     display: inline-block;
     height: 28px;
     width: 28px;
     cursor: pointer;
     &.checked {
-      background: url(/img/checked.svg) no-repeat;
+      background: url(/checked.svg) no-repeat;
       background-size: contain;
     }
   }
