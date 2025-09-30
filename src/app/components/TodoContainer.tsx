@@ -3,6 +3,7 @@ import Sort from "./Sort";
 import TodoList from "./TodoList";
 import { Task } from "../types";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import "./todo-list.css";
 
 type Tasks = {
@@ -10,6 +11,7 @@ type Tasks = {
 };
 
 export function TodoContainer({ initialTasks }: Tasks) {
+  const router = useRouter();
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [filter, setFilter] = useState<string>("all");
   const [sort, setSort] = useState<string>("addedDate");
@@ -20,6 +22,30 @@ export function TodoContainer({ initialTasks }: Tasks) {
   useEffect(() => {
     setTasks(initialTasks);
   }, [initialTasks]);
+
+  const handleDelete = async (id: string) => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+    await fetch(`${API_URL}/api/todo/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+    router.refresh();
+  };
+
+  const handleUpdate = async (id: string, updateData: Partial<Task>) => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+    await fetch(`${API_URL}/api/todo/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, ...updateData }),
+    });
+    router.refresh();
+  };
 
   const filteredTasks = tasks.filter((task) => {
     switch (filter) {
@@ -67,7 +93,7 @@ export function TodoContainer({ initialTasks }: Tasks) {
         toggleActive={toggleActive}
         onToggleActive={handleToggleActive}
       />
-      <TodoList tasks={sortedTasks} toggleActive={toggleActive} />
+      <TodoList tasks={sortedTasks} toggleActive={toggleActive} onDelete={handleDelete} onUpdate={handleUpdate} />
     </div>
   );
 }

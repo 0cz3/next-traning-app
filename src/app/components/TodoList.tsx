@@ -1,63 +1,30 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Task } from "../types";
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent } from "react";
 import "./todo-list.css";
 
 type Tasks = {
   tasks: Task[];
-  toggleActive: boolean
+  toggleActive: boolean;
+  onDelete: (id: string) => void;
+  onUpdate: (id: string, updateData: Partial<Task>) => void;
 };
 
-function TodoList({ tasks: initialTasks, toggleActive }: Tasks) {
-  const router = useRouter();
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
-
-  useEffect(() => {
-    setTasks(initialTasks);
-  }, [initialTasks]);
-
-  const handleDelete = async (id: string) => {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL!;
-    await fetch(`${API_URL}/api/todo/`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    });
-    router.refresh();
-  };
-
-  const handleChange = async (id: string, updateData: Partial<Task>) => {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL!;
-    await fetch(`${API_URL}/api/todo/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id, ...updateData }),
-    });
-    router.refresh();
-  };
+function TodoList({ tasks, toggleActive, onDelete, onUpdate }: Tasks) {
 
   const handleInputChange = (id: string, e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === "checkbox" ? checked : value;
+    const finalValue = name === 'deadline' ? (value ? new Date(value) : null) : newValue;
 
-    setTasks((currentTasks) => currentTasks.map((task) => (task.id === id ? { ...task, [name]: newValue } : task)));
-
-    let updateData: Partial<Task> = {};
-    if (name === "completed") {
-      updateData = { completed: checked };
-    } else if (name === "taskName") {
-      updateData = { taskName: value };
-    } else if (name === "deadline") {
-      updateData = { deadline: value ? new Date(value) : null };
-    }
-    handleChange(id, updateData);
+    onUpdate(id, { [name]: finalValue });
   };
+
+  if (!toggleActive) {
+    return null;
+  }
+
 
   return (
     <ul className={`todoTask__list js_todoTask_list ${!toggleActive ? "is-closed" : ""}`}>
@@ -85,7 +52,7 @@ function TodoList({ tasks: initialTasks, toggleActive }: Tasks) {
               value={deadlineDate}
               onChange={(e) => handleInputChange(task.id, e)}
             />
-            <button onClick={() => handleDelete(task.id)} className="todoTask__delete js_todoTask_delete"></button>
+            <button onClick={() => onDelete(task.id)} className="todoTask__delete js_todoTask_delete"></button>
           </li>
         );
       })}
